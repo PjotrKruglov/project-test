@@ -23,6 +23,6 @@ class Quiz extends Model
 
     public function questions()
     {
-        return $this->belongsToMany('App\Models\Qustion');
+        return $this->belongsToMany('App\Models\Question');
     }
 }

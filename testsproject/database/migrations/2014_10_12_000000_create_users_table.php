@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->char('tel',25);
             $table->char('email',100)->unique();
             $table->string('nickname');
+            $table->string('remember_token', 100);
         });
     }
 

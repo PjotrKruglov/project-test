@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Answer;
 
 class AnswerController extends Controller
 {
@@ -23,7 +24,7 @@ class AnswerController extends Controller
      */
     public function create()
     {
-        //
+        return view('answer.create');
     }
 
     /**
@@ -34,7 +35,18 @@ class AnswerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'question_id' => 'required',
+            'title' => 'required',
+            'isTrue' => 'required'
+        ]);
+        $answer = new Answer([
+            'question_id' => $request->get('question_id'),
+            'title' => $request->get('title'),
+            'isTrue' => $request->get('isTrue')
+        ]);
+        $question->save();
+        return redirect()->route('web.php');
     }
 
     /**

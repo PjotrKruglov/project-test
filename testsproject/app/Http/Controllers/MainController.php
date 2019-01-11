@@ -16,5 +16,19 @@ class MainController extends Controller
             'email' => 'required|email',
             'password' => 'required|alphaNum|min:3'
         ]);
+
+        if(Auth::attempt($user_data)) {
+            return redirect('main/successlogin');
+        }
+        else{
+            return back()->with('error', 'Wrong Login Details');
+        }
+    }
+    function successlogin() {
+        return view('Main');
+    }
+    function logout() {
+        Auth::logout();
+        return redirect('main');
     }
 }

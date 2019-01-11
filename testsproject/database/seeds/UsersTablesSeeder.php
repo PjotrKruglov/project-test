@@ -14,11 +14,14 @@ class UsersTablesSeeder extends Seeder
     {
         //
         User::create([
-            ''  =>  '',
-            ''  =>  '',
-            ''  =>  '',
-            ''  =>  Hash::make(''),
-            ''  =>  str_random(10)
+            'login'  =>  'login',
+            'password'  =>  Hash::make('password'),
+            'firstname'  =>  'aaa',
+            'lastname'  =>  'sss',
+            'tel'  =>  '456457',
+            'email'  =>  'sss@ss.ss',
+            'nickname'  =>  'sss',
+            'remember_token'  =>  str_random(10)
         ]);
     }
 }

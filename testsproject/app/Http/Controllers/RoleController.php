@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Question;
+use App\Role;
 
-class QuestionController extends Controller
+class RoleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -24,7 +24,7 @@ class QuestionController extends Controller
      */
     public function create()
     {
-        return view('question.create');
+        return view('role.create');
     }
 
     /**
@@ -36,14 +36,12 @@ class QuestionController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'question_time' => 'required',
             'title' => 'required'
         ]);
-        $question = new Question([
-            'question_time' => $request->get('question_time'),
+        $role = new Role([
             'title' => $request->get('title')
         ]);
-        $question->save();
+        $role->save();
         return redirect()->route('web.php');
     }
 
@@ -66,9 +64,9 @@ class QuestionController extends Controller
      */
     public function edit($id)
     {
-        $Question = Question::find($id);
-        return View::make('Question.edit')
-            ->with('Question', $Question);
+        $role = Role::find($id);
+        return View::make('role.edit')
+            ->with('role', $role);
     }
 
     /**
@@ -80,11 +78,10 @@ class QuestionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $Question= \App\Question::find($id);
-        $Question->question_time=$request->get('question_time');
-        $Question->title=$request->get('title');
-        $Question->save();
-        return redirect('questions');
+        $role= \App\Role::find($id);
+        $role->title=$request->get('title');
+        $role->save();
+        return redirect('roles');
     }
 
     /**
@@ -95,8 +92,8 @@ class QuestionController extends Controller
      */
     public function destroy($id)
     {
-        $Question = \App\Question::find($id);
-        $Question->delete();
-        return redirect('questions')->with('success','Information has been  deleted');
+        $role = \App\Role::find($id);
+        $role->delete();
+        return redirect('roles')->with('success','Information has been  deleted');
     }
 }

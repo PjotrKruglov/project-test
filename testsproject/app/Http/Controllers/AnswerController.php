@@ -68,7 +68,9 @@ class AnswerController extends Controller
      */
     public function edit($id)
     {
-        //
+        $Answer = Answer::find($id);
+        return View::make('Answer.edit')
+            ->with('Answer', $Answer);
     }
 
     /**
@@ -80,7 +82,12 @@ class AnswerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $Answer= \App\Answer::find($id);
+        $Answer->question_ID=$request->get('question_ID');
+        $Answer->title=$request->get('title');
+        $Answer->isTrue=$request->get('isTrue');
+        $Answer->save();
+        return redirect('answers');
     }
 
     /**
@@ -91,6 +98,8 @@ class AnswerController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $Answer = \App\Answer::find($id);
+        $Answer->delete();
+        return redirect('answers')->with('success','Information has been  deleted');
     }
 }

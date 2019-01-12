@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Quiz;
 
 class QuizController extends Controller
 {
@@ -23,7 +24,7 @@ class QuizController extends Controller
      */
     public function create()
     {
-        //
+        return view('quiz.create');
     }
 
     /**
@@ -34,7 +35,16 @@ class QuizController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'number' => 'required',
+            'title' => 'required'
+        ]);
+        $quiz = new Quiz([
+            'number' => $request->get('number'),
+            'title' => $request->get('title')
+        ]);
+        $quiz->save();
+        return redirect()->route('web.php');
     }
 
     /**
@@ -56,7 +66,9 @@ class QuizController extends Controller
      */
     public function edit($id)
     {
-        //
+        $quiz = Quiz::find($id);
+        return View::make('quiz.edit')
+            ->with('quiz', $quiz);
     }
 
     /**
@@ -68,7 +80,11 @@ class QuizController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $quiz= \App\Quiz::find($id);
+        $quiz->number=$request->get('number');
+        $quiz->title=$request->get('title');
+        $quiz->save();
+        return redirect('quizzes');
     }
 
     /**
@@ -79,6 +95,8 @@ class QuizController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $quiz = \App\Quiz::find($id);
+        $quiz->delete();
+        return redirect('quizzes')->with('success','Information has been  deleted');
     }
 }

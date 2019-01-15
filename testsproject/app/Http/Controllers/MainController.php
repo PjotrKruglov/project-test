@@ -31,4 +31,16 @@ class MainController extends Controller
         Auth::logout();
         return redirect('main');
     }
+    function login(){
+        return view('login');
+    }
+    function main(){
+        return view('main');
+    }
+    function register(){
+        return view('registration');
+    }
+    function questions(){
+        return view('questions');
+    }
 }

@@ -51,16 +51,15 @@ body {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="Main.php">Logo</a>
+      <a class="navbar-brand" href="{{ url('/main') }}">Logo</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li ><a href="Main.php">Home</a></li>
-        <li><a href="Questions.php">Begin a test</a></li>
+        <li ><a href="{{ url('/main') }}">Home</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-      <li ><a href="Login.php"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-      <li class="active"><a href="Registration.php"><span class="glyphicon glyphicon-log-in"></span> Registration</a></li>
+      <li ><a href="{{ url('/login') }}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      <li class="active"><a href="{{ url('/registration') }}"><span class="glyphicon glyphicon-log-in"></span> Registration</a></li>
       </ul>
     </div>
   </div>
